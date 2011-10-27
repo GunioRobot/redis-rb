@@ -11,7 +11,7 @@ puts ""
 
 @redis.subscribe('one','two') do |on|
   on.subscribe {|klass, num_subs| puts "Subscribed to #{klass} (#{num_subs} subscriptions)" }
-  on.message do |klass, msg| 
+  on.message do |klass, msg|
     puts "#{klass} received: #{msg}"
     if msg == 'exit'
       @redis.unsubscribe
